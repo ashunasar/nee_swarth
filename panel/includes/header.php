@@ -63,23 +63,7 @@
                <!-- Logo -->
                <!-- ============================================================== -->
                <div class="navbar-brand">
-                  <!-- Logo icon -->
-                  <a href="index.html">
-                     <b class="logo-icon">
-                        <!-- Dark Logo icon -->
-                        <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                        <!-- Light Logo icon -->
-                        <img src="assets/images/logo-icon.png" alt="homepage" class="light-logo" />
-                     </b>
-                     <!--End Logo icon -->
-                     <!-- Logo text -->
-                     <span class="logo-text">
-                        <!-- dark Logo text -->
-                        <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                        <!-- Light Logo text -->
-                        <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
-                     </span>
-                  </a>
+               <img src="assets/images/new_mpb_logo.png" alt="homepage" style="height: 100%;">
                </div>
                <!-- ============================================================== -->
                <!-- End Logo -->
@@ -109,6 +93,7 @@
                   <!-- ============================================================== -->
                   <!-- Search -->
                   <!-- ============================================================== -->
+<!--
                   <li class="nav-item d-none d-md-block">
                      <a class="nav-link" href="javascript:void(0)">
                         <form>
@@ -120,9 +105,11 @@
                         </form>
                      </a>
                   </li>
+-->
                   <!-- ============================================================== -->
                   <!-- User profile and search -->
                   <!-- ============================================================== -->
+<!--
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -138,6 +125,7 @@
                         Logout</a>
                      </div>
                   </li>
+-->
                   <!-- ============================================================== -->
                   <!-- User profile and search -->
                   <!-- ============================================================== -->
@@ -228,6 +216,24 @@
                            </span></a>
                         </li>
 -->
+                     </ul>
+                  </li>
+                  <li class="list-divider"></li>
+                  <li class="nav-small-cap"><span class="hide-menu">Control Notification Categories</span></li>
+                  <li class="sidebar-item">
+                     <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                        aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                        class="hide-menu">Options</span></a>
+                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item"><a href="sendNotificationEveryone.php" class="sidebar-link"><span
+                           class="hide-menu">To Everyone</span></a>
+                        </li>
+                        <li class="sidebar-item"><a href="manageCategories.php" class="sidebar-link"><span
+                           class="hide-menu">Product Wise</span></a>
+                        </li>
+                        <li class="sidebar-item"><a href="manageCategories.php" class="sidebar-link"><span
+                           class="hide-menu">Single User</span></a>
+                        </li>
                      </ul>
                   </li>
                </ul>

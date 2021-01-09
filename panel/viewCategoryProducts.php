@@ -16,8 +16,8 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Image</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Dis Price</th>
-                                            <th scope="col">Discription</th>
+                                            <th scope="col">Discount</th>
+                                            <th scope="col">AvailableStock</th>
                                             <th scope="col">Edit</th>
                                             <th scope="col">Delete</th>
                                         </tr>
@@ -34,7 +34,7 @@
                                         <td><img src=images/productImages/'.$product->image_path.' style="height: 100px;"></td>
                                         <td>'.$product->price.'</td>
                                         <td>'.$product->discounted_price.'</td>
-                                        <td>'.$product->description.'</td>
+                                        <td>'.$product->stock.'</td>
                                         <td><a href="editProduct.php?edit='.$product->id.'"><button class="btn btn-rounded btn-outline-primary">Edit</button></a></td>
                                         <td><a onclick=\'javascript : return confirm("Are you sure want to delete this Product?")\' href="viewCategoryProducts.php?category='.$category.'&delete='.$product->id.'"><button class="btn btn-rounded btn-outline-danger">Delete</button></a></td>
                                         </tr>';

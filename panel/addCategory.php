@@ -16,7 +16,10 @@
                                                 <div class="form-group">
                                                     <input type="text" name="categoryName" class="form-control" placeholder="Category Name" required>
                                                 </div>
-                                                
+                                                <div class="form-group">
+                                            <label  for="upload-photo" style="background: #5f76e8;height: 35px;width: 200px;border-radius: 5px;color: white;line-height: 35px;text-align: center;">Upload Category Image...</label>
+                                            <input type="file" name="categoryImage" id="upload-photo" required="" style="left: 15px;width: 200px;line-height: 35px;">
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -37,8 +40,9 @@
         <?php
     if(isset($_POST['submit'])){
         $categoryName = $_POST['categoryName'];
+        $categoryImage = $_FILES['categoryImage'];
 
-        $adminControl->addCategoryName($categoryName);
+        $adminControl->addCategoryName($categoryName,$categoryImage);
     }
 
 

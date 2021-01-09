@@ -18,6 +18,15 @@
                                             <label  for="upload-photo" style="background: #5f76e8;height: 35px;width: 200px;border-radius: 5px;color: white;line-height: 35px;text-align: center;">Upload Crousal Image...</label>
                                             <input type="file" name="CrousalImage" id="upload-photo" required="" style="left: 15px;width: 200px;line-height: 35px;">
                                                 </div>
+                                                <div class="form-group">
+                                                <select name="category" id="" class="form-control" required>
+                                                <option value="" selected disabled>Select Category</option>
+                                                <?php foreach($adminView->showCategoryNamesForPanel()->fetchAll() as $category){
+                                                echo '<option value="'.$category->category_name.'">'.$category->category_name.'</option>';
+
+                                                } ?>
+                                                </select>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -38,7 +47,8 @@
         <?php
     if(isset($_POST['submit'])){
         $crousalImage = $_FILES['CrousalImage'];
-        $adminControl->addCrousalImage($crousalImage);
+        $category     = $_POST['category'];
+        $adminControl->addCrousalImage($crousalImage,$category);
     }
 
 

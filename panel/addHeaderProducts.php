@@ -17,9 +17,17 @@
                                                     <input type="text" name="productName" class="form-control" placeholder="product Name" required>
                                                 </div>
                                                 <div class="form-group">
+                                                <select name="category" id="" class="form-control" required>
+                                                <option value="" selected disabled>Select Category</option>
+                                                <?php foreach($adminView->showCategoryNamesForPanel()->fetchAll() as $category){
+                                                echo '<option value="'.$category->category_name.'">'.$category->category_name.'</option>';
+
+                                                } ?>
+                                                </select>
+                                                </div>
+                                                <div class="form-group">
                                             <label  for="upload-photo" style="background: #5f76e8;height: 35px;width: 200px;border-radius: 5px;color: white;line-height: 35px;text-align: center;">Upload Product Image...</label>
                                             <input type="file" name="productImage" id="upload-photo" required>
-<!--                                               <input type="file" name="productImage"/>-->
                                                 </div>
                                             </div>
                                             
@@ -42,7 +50,8 @@
     if(isset($_POST['submit'])){
         $productName = $_POST['productName'];
         $productImage = $_FILES['productImage'];
-        $adminControl->addHeaderProduct($productName,$productImage);
+        $category = $_POST['category'];
+        $adminControl->addHeaderProduct($productName,$productImage,$category);
     }
 
 

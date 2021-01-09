@@ -21,6 +21,15 @@
                                                     <input type="text" name="productName" class="form-control" value="<?php echo $product->productName;?>" placeholder="product Name">
                                                 </div>
                                                 <div class="form-group">
+                                                    <select name="category" id="" class="form-control" required>
+                                                    <option value="" disabled>Select Category</option>
+                                                    <option selected value="<?php echo $product->category?>"><?php echo $product->category?></option>
+                                                    <?php foreach($adminView->showCategoryNamesForPanel()->fetchAll() as $category){
+                                                    if($category->category_name !==$product->category){
+                                                        echo '<option value="'.$category->category_name.'">'.$category->category_name.'</option>';}}?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
                                                     <img src="images/<?php echo $product->productImage;?>" alt="" style="height: 60px;">
                                                 </div>
                                                 <div class="form-group">
@@ -29,7 +38,7 @@
 <!--                                               <input type="file" name="productImage"/>-->
                                                 </div>
                                             </div>
-                                            
+                                             
                                         </div>
                                         
                                     </div>
@@ -49,15 +58,16 @@
     if(isset($_POST['submit'])){
                  $id  = $_GET['edit']; 
         $productName  = $_POST['productName'];
+        $category  = $_POST['category'];
         
         if(isset($_FILES['productImage']['name'][0])){
             $productImage = $_FILES['productImage'];
-            print_r($productImage);
+//            print_r($productImage);
         }else{
             $productImage = $product->productImage;
-            print($productImage);
+//            print($productImage);
         } 
-        $adminControl->EditHeaderProduct($id,$productName,$productImage);
+        $adminControl->EditHeaderProduct($id,$productName,$productImage,$category);
         ?>
         <script>
 window.location = 'editHeaderProducts.php?edit=<?php echo $id?>';

@@ -15,6 +15,7 @@
                                             <th scope="col">#</th>
                                    
                                             <th scope="col">Crousal Image</th>
+                                            <th scope="col">Category</th>
                                             <th scope="col">Edit</th>
                                             <th scope="col">Delete</th>
                                         </tr>
@@ -27,8 +28,8 @@
                                                
                                         echo '<tr>
                                         <th scope="row">'.$crousal->id.'</th>
-                                
                                         <td><img src="images/'.$crousal->imagePath.'" alt="" style="height: 50px;"></td>
+                                        <td>'.$crousal->category.'</td>
                                         <td><a href="editCrousalImage.php?edit='.$crousal->id.'"><button class="btn btn-rounded btn-outline-primary">Edit</button></a></td>
                                         <td><a onclick=\'javascript : return confirm("Are you sure want to delete this Crousal Image?")\' href="modifyCrousalImages.php?delete='.$crousal->id.'"><button class="btn btn-rounded btn-outline-danger">Delete</button></a></td>
                                         </tr>';

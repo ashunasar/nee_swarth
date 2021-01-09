@@ -11,11 +11,13 @@ class AdminView extends Admin{
                  $id  =  $product->id;
         $productName  = $product->productName;
         $productImage = $product->productImage;
+        $category     = $product->category;
 
         $response = array();
         $response['id'] = $id;
         $response['productName']  = $productName;
         $response['productImage'] = $productImage;
+        $response['category']     = $category;
         
         echo json_encode($response);
         echo ($i == $count - 1) ? '' :',';
@@ -44,10 +46,12 @@ class AdminView extends Admin{
     while($crousal = $result->fetch()){
                  $id  =  $crousal->id;
         $imagePath = $crousal->imagePath;
+        $category  = $crousal->category;
 
         $response = array();
         $response['id'] = $id;
         $response['imagePath'] = $imagePath;
+        $response['category']  = $category;
         
         echo json_encode($response);
         echo ($i == $count - 1) ? '' :',';
@@ -66,7 +70,7 @@ class AdminView extends Admin{
     
     
     public function showCategoryNamesForPanel(){
-        return $this->selectCategoryNames();
+        return $this->selectCategoryNames(); 
     }
     
     public function showCategoryNameById($id){
@@ -79,6 +83,10 @@ class AdminView extends Admin{
     
     public function showProductById($id){
         return $this->selectProductById($id);
+    }
+    
+    public function showProductDescription($name,$image_path,$price){
+        return $this->selectProductDescription($name,$image_path,$price);
     }
     
 }

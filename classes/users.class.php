@@ -9,7 +9,7 @@ public function jsonMessage($msg){
     echo json_encode($response);
     echo ']}';
 }
-
+ 
 protected function signUpUser($firstName,$lastName,$email,$password){
 
      if(empty($firstName) || empty($lastName) || empty($email) || empty($password)){
@@ -61,6 +61,64 @@ protected function loginUser($email,$password){
             }
             }
     }
+
+protected function checkProductCart($product_image,$user_email){
+        $query  = "SELECT * FROM `cart` WHERE `product_image`=? and `user_email`=?";
+        $reslut = $this->connect()->prepare($query);
+        $reslut->execute([$product_image,$user_email]);
+    
+         return $reslut->rowCount();
+    }
+    
+protected function insertIntoCart($product_name,$product_image,$product_quantity,$product_price,$user_email){
+        $count = $this->checkProductCart($product_image,$user_email);
+        
+        if($count < 1){
+        $query = "INSERT INTO `cart` (`cart_id`,`product_name`, `product_image`, `product_quantity`, `product_price`,`user_email`) VALUES (NULL, ?,?, ?, ?,?)";
+        $reslut = $this->connect()->prepare($query);
+        $reslut->execute([$product_name,$product_image,$product_quantity,$product_price,$user_email]);
+        }else{
+        $query = "UPDATE cart set `product_quantity` = `product_quantity` + ? WHERE `product_image` = ? and `user_email` = ?";
+        $reslut = $this->connect()->prepare($query);
+        $reslut->execute([$product_quantity,$product_image,$user_email]);
+        }
+    }
+    
+protected function checkProductWishlist($product_image,$user_email){
+        $query  = "SELECT * FROM `wishlist` WHERE `product_image`=? and `user_email`=?";
+        $reslut = $this->connect()->prepare($query);
+        $reslut->execute([$product_image,$user_email]);
+    
+         return $reslut->rowCount();
+    }
+    
+protected function insertIntoWishlist($product_name,$product_image,$product_quantity,$product_price,$user_email){
+        $count = $this->checkProductWishlist($product_image,$user_email);
+        
+        if($count < 1){
+        $query = "INSERT INTO `wishlist` (`wishlist_id`,`product_name`, `product_image`, `product_quantity`, `product_price`,`user_email`) VALUES (NULL, ?, ?,?, ?,?)";
+        $reslut = $this->connect()->prepare($query);
+        $reslut->execute([$product_name,$product_image,$product_quantity,$product_price,$user_email]);
+        }else{
+        $query = "DELETE FROM `wishlist` WHERE `product_image` = ? and `user_email` = ?";
+        $reslut = $this->connect()->prepare($query);
+        $reslut->execute([$product_image,$user_email]);
+        }
+    }
+    
+protected function getCartItems($user_email){
+    $query  = "SELECT * FROM `cart` WHERE `user_email` =?";
+    $result = $this->connect()->prepare($query);
+    $result->execute([$user_email]);
+
+    return $result; 
+}
+    
+protected function removeCartItem($product_name,$product_image,$user_email){
+    $query = "DELETE FROM `cart` WHERE `product_name`=? and `product_image`=? AND `user_email`=?";
+    $result = $this->connect()->prepare($query);
+    $result->execute([$product_name,$product_image,$user_email]);
+}
 
 }
 

@@ -13,18 +13,26 @@
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-4">
+<?php  $crousal = $adminView->showCrousalImageById($_GET['edit'])->fetch();?>
+                                               
                                                 <div class="form-group">
-                                                
-                                                
-                                            <img src="images/<?php echo $adminView->showCrousalImageById($_GET['edit'])->fetch()->imagePath; ?>" alt="">
+                                            <img src="images/<?php echo $crousal->imagePath;?>" alt="" style="height:200px">
                                                 </div>
-                                                
+                                            <div class="form-group">
+                                            <label  for="upload-photo" style="background: #5f76e8;height: 35px;width: 200px;border-radius: 5px;color: white;line-height: 35px;text-align: center;">Change Crousal Image...</label>
+                                            <input type="file" name="CrousalImage" id="upload-photo" style="left: 15px;width: 200px;line-height: 35px;" accept="image/*">
+                                                </div>
                                                 <div class="form-group">
-                                            <label  for="upload-photo" style="background: #5f76e8;height: 35px;width: 200px;border-radius: 5px;color: white;line-height: 35px;text-align: center;">Upload Crousal Image...</label>
-                                            <input type="file" name="CrousalImage" id="upload-photo" required="" style="left: 15px;width: 200px;line-height: 35px;">
+                                                    <select name="category" id="" class="form-control" required>
+                                                    <option value="" disabled>Select Category</option>
+                                                    <option selected value="<?php echo $crousal->category?>"><?php echo $crousal->category?></option>
+                                                    <?php foreach($adminView->showCategoryNamesForPanel()->fetchAll() as $category){
+                                                    if($category->category_name !==$crousal->category){
+                                                        echo '<option value="'.$category->category_name.'">'.$category->category_name.'</option>';}}?>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            
+                                             
                                         </div>
                                         
                                     </div>
@@ -43,8 +51,15 @@
         <?php
     if(isset($_POST['submit'])){
         $id    = $_GET['edit'];
-        $crousalImage = $_FILES['CrousalImage'];
-        $adminControl->EditCrousalImage($id,$crousalImage);
+        
+        if(isset($_FILES['CrousalImage']['name'][0])){
+           $crousalImage =  $_FILES['CrousalImage'];
+        }else{
+            $crousalImage = $crousal->imagePath;
+        }
+
+        $categoty     = $_POST['category'];
+        $adminControl->EditCrousalImage($id,$crousalImage,$categoty);
         ?>
         <script>
 window.location = 'editCrousalImage.php?edit=<?php echo $id?>';

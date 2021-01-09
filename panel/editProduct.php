@@ -36,7 +36,13 @@
                                                     <input type="text" name="discounted_price" class="form-control" placeholder="Discounted Price" value="<?php echo  $product->discounted_price ?>" required>
                                                 </div>
                                                 <div class="form-group">
+                                                    <input type="text" name="stock" class="form-control" placeholder="Available Stock" value="<?php echo  $product->stock ?>" required>
+                                                </div>
+                                                <div class="form-group">
                                                     <textarea name="description" id="" class="form-control" required  rows="5" placeholder="Product Description"><?php echo  $product->description ?></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                     <input type="text" name="origin" class="form-control" value="<?php echo  $product->origin ?>" placeholder="Country Of Origin" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <select name="category" id="" class="form-control" required>
@@ -74,7 +80,9 @@
 //        $image_path = $_FILES['image_path'];
         $price      = $_POST['price'];
         $discounted_price = $_POST['discounted_price'];
+        $stock = $_POST['stock'];
         $description  = $_POST['description'];
+        $origin  = $_POST['origin'];
         $category     = $_POST['category'];
         
         if(isset($_FILES['image_path']['name'][0]) ){
@@ -83,7 +91,7 @@
             $image_path = $product->image_path;
         }
         
-        $adminControl->EditProductById($id,$name,$image_path,$price,$discounted_price,$description,$category);
+        $adminControl->EditProductById($id,$name,$image_path,$price,$discounted_price,$stock,$description,$origin,$category);
         
         ?>
         <script>
